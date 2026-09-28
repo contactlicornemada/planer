@@ -784,6 +784,71 @@ h1,h2,h3,.title,.names,.couple-names{font-family:'Dancing Script',cursive!import
   }
 }
 
+
+
+/* ===== FINAL HEART + SECTION ORDER OVERRIDES ===== */
+.scroll-heart-path{
+  width:46px!important;height:46px!important;
+  perspective:180px;
+  transform:translate(-50%,-50%);
+  transition:left .32s cubic-bezier(.22,.8,.22,1),top .32s cubic-bezier(.22,.8,.22,1),opacity .35s ease;
+}
+.scroll-heart-path span{
+  position:relative!important;
+  display:block!important;
+  width:46px!important;height:46px!important;
+  border-radius:0!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  font-size:0!important;
+  transform-style:preserve-3d;
+  animation:none!important;
+}
+.scroll-heart-path span:before,.scroll-heart-path span:after{
+  content:"♥";
+  position:absolute;
+  top:1px;
+  width:50%;height:44px;
+  overflow:hidden;
+  color:var(--heart-color,#b54862);
+  font:32px/44px Georgia,serif;
+  text-shadow:0 7px 15px rgba(75,35,45,.25);
+  backface-visibility:visible;
+  transform-style:preserve-3d;
+  transition:color .5s ease;
+}
+.scroll-heart-path span:before{
+  left:0;text-align:left;
+  transform-origin:100% 50%;
+  clip-path:inset(0 0 0 0);
+  animation:heartWingLeft 1.15s ease-in-out infinite;
+}
+.scroll-heart-path span:after{
+  right:0;text-align:right;
+  transform-origin:0 50%;
+  clip-path:inset(0 0 0 0);
+  animation:heartWingRight 1.15s ease-in-out infinite;
+}
+@keyframes heartWingLeft{
+  0%,100%{transform:rotateY(0deg) rotateZ(0deg) scale(1)}
+  22%{transform:rotateY(-62deg) rotateZ(-5deg) scale(.92)}
+  45%{transform:rotateY(0deg) rotateZ(0deg) scale(1.08)}
+  68%{transform:rotateY(35deg) rotateZ(4deg) scale(.96)}
+}
+@keyframes heartWingRight{
+  0%,100%{transform:rotateY(0deg) rotateZ(0deg) scale(1)}
+  22%{transform:rotateY(62deg) rotateZ(5deg) scale(.92)}
+  45%{transform:rotateY(0deg) rotateZ(0deg) scale(1.08)}
+  68%{transform:rotateY(-35deg) rotateZ(-4deg) scale(.96)}
+}
+.scroll-heart-path span{
+  filter:drop-shadow(0 4px 8px rgba(90,45,50,.18));
+}
+@media(prefers-reduced-motion:reduce){
+  .scroll-heart-path span:before,.scroll-heart-path span:after{animation:none!important}
+}
+
 </style>
 </head>
 
@@ -870,6 +935,57 @@ h1,h2,h3,.title,.names,.couple-names{font-family:'Dancing Script',cursive!import
       <p>Nous avons choisi de célébrer notre union entourés de notre famille, de nos amis et de toutes les personnes qui ont accompagné notre histoire.</p>
     </div>
   </section>
+
+  <!-- PHOTO TIMELINE -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="reveal reveal-scale">
+        <div class="ornament">❧</div>
+        <div class="kicker">Notre histoire</div>
+        <h3>5 moments forts</h3>
+        <p>Quelques fragments de notre histoire, de 2024 à 2025.</p>
+      </div>
+    </div>
+
+    <div class="timeline-wrap reveal reveal-up" id="timelineWrap" aria-label="Timeline horizontale">
+<svg class="curve-decoration" viewBox="0 0 1200 100" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0,62 C180,5 290,100 455,48 S735,4 900,58 S1070,92 1200,35"/>
+</svg>
+
+<div class="timeline-progress" id="timelineProgress"></div>
+<div class="timeline-scroll-indicator">Glissez →</div>
+      <div class="timeline">
+        <article class="memory"><div class="memory-card">
+          <img src="photo1.png" alt="Souvenir d'avril 2024">
+          <div class="memory-date">Avril 2024</div>
+          <div class="memory-caption">Le commencement</div>
+        </div></article>
+        <article class="memory"><div class="memory-card">
+          <img src="photo2.png" alt="Souvenir de juillet 2024">
+          <div class="memory-date">Juillet 2024</div>
+          <div class="memory-caption">Premières aventures</div>
+        </div></article>
+        <article class="memory"><div class="memory-card">
+          <img src="photo3.png" alt="Souvenir de janvier 2025">
+          <div class="memory-date">Janvier 2025</div>
+          <div class="memory-caption">Une nouvelle année à deux</div>
+        </div></article>
+        <article class="memory"><div class="memory-card">
+          <img src="photo4.png" alt="Souvenir d'avril 2025">
+          <div class="memory-date">Avril 2025</div>
+          <div class="memory-caption">Toujours plus loin</div>
+        </div></article>
+        <article class="memory"><div class="memory-card">
+          <img src="photo5.png" alt="Souvenir de juin 2025">
+          <div class="memory-date">Juin 2025</div>
+          <div class="memory-caption">Notre histoire continue</div>
+        </div></article>
+      </div>
+    </div>
+
+    <div class="timeline-hint" style="text-align:center">← Glissez horizontalement →</div>
+  </section>
+
 
   <!-- PROGRAMME -->
   <section class="section">
@@ -1037,56 +1153,6 @@ h1,h2,h3,.title,.names,.couple-names{font-family:'Dancing Script',cursive!import
 
       <div class="guests stagger" id="guestList"></div>
     </div>
-  </section>
-
-  <!-- PHOTO TIMELINE -->
-  <section class="section">
-    <div class="section-inner">
-      <div class="reveal reveal-scale">
-        <div class="ornament">❧</div>
-        <div class="kicker">Notre histoire</div>
-        <h3>Cinq moments</h3>
-        <p>Quelques fragments de notre histoire, de 2024 à 2025.</p>
-      </div>
-    </div>
-
-    <div class="timeline-wrap reveal reveal-up" id="timelineWrap" aria-label="Timeline horizontale">
-<svg class="curve-decoration" viewBox="0 0 1200 100" preserveAspectRatio="none" aria-hidden="true">
-  <path d="M0,62 C180,5 290,100 455,48 S735,4 900,58 S1070,92 1200,35"/>
-</svg>
-
-<div class="timeline-progress" id="timelineProgress"></div>
-<div class="timeline-scroll-indicator">Glissez →</div>
-      <div class="timeline">
-        <article class="memory"><div class="memory-card">
-          <img src="photo1.png" alt="Souvenir d'avril 2024">
-          <div class="memory-date">Avril 2024</div>
-          <div class="memory-caption">Le commencement</div>
-        </div></article>
-        <article class="memory"><div class="memory-card">
-          <img src="photo2.png" alt="Souvenir de juillet 2024">
-          <div class="memory-date">Juillet 2024</div>
-          <div class="memory-caption">Premières aventures</div>
-        </div></article>
-        <article class="memory"><div class="memory-card">
-          <img src="photo3.png" alt="Souvenir de janvier 2025">
-          <div class="memory-date">Janvier 2025</div>
-          <div class="memory-caption">Une nouvelle année à deux</div>
-        </div></article>
-        <article class="memory"><div class="memory-card">
-          <img src="photo4.png" alt="Souvenir d'avril 2025">
-          <div class="memory-date">Avril 2025</div>
-          <div class="memory-caption">Toujours plus loin</div>
-        </div></article>
-        <article class="memory"><div class="memory-card">
-          <img src="photo5.png" alt="Souvenir de juin 2025">
-          <div class="memory-date">Juin 2025</div>
-          <div class="memory-caption">Notre histoire continue</div>
-        </div></article>
-      </div>
-    </div>
-
-    <div class="timeline-hint" style="text-align:center">← Glissez horizontalement →</div>
   </section>
 
   <!-- RSVP -->
@@ -1454,7 +1520,10 @@ if(timelineWrap){
       const idx=activeSection ? Math.min(sections.indexOf(activeSection),palette.length-1) : 0;
       const [heartColor,glow]=palette[Math.max(0,idx)];
       heart.style.setProperty("--heart-color",heartColor);
-      heart.querySelector("span").style.boxShadow=`0 8px 24px ${glow}`;
+      heart.style.setProperty("--heart-glow",glow);
+      heart.querySelector("span").style.filter=`drop-shadow(0 5px 12px ${glow})`;
+      /* Slightly vary the flight attitude so the heart feels alive rather than mechanically animated. */
+      heart.querySelector("span").style.transform=`rotate(${angle*.32}deg) scale(${scale})`;
     }
 
     ticking=false;
